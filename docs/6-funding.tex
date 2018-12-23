@@ -1,0 +1,158 @@
+\documentclass[11pt]{article}
+\usepackage{common}
+
+\begin{document}
+    \maketitle
+    \setcounter{section}{6}
+    \section{External research funding and impact of projects}
+
+    \makeatletter
+
+    \define@key{grant}{title}{\def\mytitle{#1}}
+    \define@key{grant}{principalinvestigator}{\def\myprincipalinvestigator{#1}}
+    \define@key{grant}{otherinvestigators}{\def\myotherinvestigators{#1}}
+    \define@key{grant}{dates}{\def\mydates{#1}}
+    \define@key{grant}{fundingagency}{\def\myfundingagency{#1}}
+    \define@key{grant}{value}{\def\myvalue{#1}}
+    \define@key{grant}{mainoutcomes}{\def\mymainoutcomes{#1}}
+    \define@key{grant}{summary}{\def\mysummary{#1}}
+
+    \presetkeys{grant}{}{title={No title},principalinvestigator={None},otherinvestigators={}}
+
+    
+    \newcommand\grant[1][]{%
+      \setkeys{grant}{#1}
+        \noindent
+        {\bf \mytitle}\\
+        {\bf Principal investigator:} \myprincipalinvestigator\\
+        \ifthenelse{\not\equal{\myotherinvestigators}{}}{{\bf Other investigators:} \myotherinvestigators\newline}{}
+        {\bf Dates:} \mydates\\
+        {\bf Funding agency:} \myfundingagency\\
+        {\bf Financial value:} \myvalue\\%
+        \ifthenelse{\not\equal{\mymainoutcomes}{}}{{\bf Main outcomes:} \mymainoutcomes\\}{}
+        \ifthenelse{\not\equal{\mysummary}{}}{{\bf Summary:} \mysummary\\}{}
+        %\ifthenelse{\not\equal{\mynotes}{}}{{\it\mynotes\newline}}{}
+    }
+    \newcommand\epsrc{ (EPSRC contribution)}
+    \newcommand\UoS[1]{ (\textsterling #1 for the University of Strathclyde)}
+    \newcommand\ofwhichUoS[1]{ of which \textsterling #1 for the University of Strathclyde}
+
+
+    \grant[title = {Robustness-as-evolvability (Competitive)},
+        principalinvestigator= {Shishir Nagaraja},
+        dates                = {04/2015 -- 03/2019},
+        fundingagency        = {EPSRC},
+        value            ={\pounds 790,000 \epsrc \UoS{294000} Lead institution},
+        summary={%
+          Dr. Nagaraja leads an international consortium of five universities  and five industry partners on SDN security. This project explores novel architectures for secure control in IoT, SDN, and NFV environments. These environments present unique management challenges due to the sheer scale, complexity, dynamicity, and the substantial attack surface that must be defended. This project has developed a novel dynamic quorum primitive and applied it to build a scalable distributed control architecture that can defend against insider attackers. The project involves the extensive application of machine learning primitives at all levels of router design –- from smart caching algorithms in switches to adversarial measurement techniques to adversary-resistant controllers. },
+        mainoutcomes={Dr. Nagaraja and his team published three peer-reviewed papers with two more papers in submission. With the support of UK Govt. and industry, we created the  ENACT and RANSOM testbeds as part of this project. The testbed is used by the team and the industrial partners on the project. In terms of impact, Brocade is currently considering the quorum control architecture for productisation, while Juniper's product management is considering the adoption of SDN cache defences within their EX series switches.}]
+
+        \grant[%
+      title ={CREATe (Competitive)},
+      principalinvestigator = {Lilian Edwards},
+      dates = {10/2012--08/2017},
+      fundingagency = {AHRC,ESRC,EPSRC},
+      value = {\textsterling 4,169,477\epsrc \UoS{206,025}},      
+      summary = { Prof. Edwards as Deputy Director, co-leads the CREATe
+        consortium of 7 universities and 80-plus industry, public
+        sector and policy partners, for a programme of more than 80
+        work packages over 4 years, funded for £5m, plus £3m industry
+        contribution. Prof. Edwards has general responsibility for the
+        digital security side of the centre and also in charge of 7
+        funded packages, running for various periods over the four
+        years, including work on digital copyright enforcement and its
+        security economics; adversarial data mining; privacy of
+        digital assets; data-protection in networked technologies;
+        privacy and security in smart cities; privacy, trust, and
+        confidence in digital services; Privacy and Disclosure on
+        Twitter feeds.},
+      mainoutcomes={Prof. Edwards and her team published six peer-reviewed papers on legal aspects of cybersecurity}]
+
+        \grant[title ={ SHAWN: Secure High availability Avionics Wireless
+          Networks (Competitive) }, principalinvestigator = {R Atkinson},
+        otherinvestigators = {I Andonovic, C Michie, D
+          Harle}, dates = {1/14--06/17}, fundingagency = {Technology
+          Strategy Board}, value = {\textsterling 723,965 UKRI
+          contribution \UoS{162,724}}, summary = {This project focused
+          on the security of wireless networks used to interconnect
+          different components on aircrafts. While wireless brought
+          weight savings and greater flexibility in these systems,
+          contributing to reduced fuel burn and less instances of
+          unscheduled maintenance, the use of insecure wireless
+          technology can compromise flight safety. Instead of
+          confidentiality, the core requirement was availability. This
+          project had two objectives which were both achieved:
+          developing aircraft wireless networks that were (a)
+          intrusion-tolerant and (b) jamming resistant. The core
+          innovation from Strathclyde was the development of security
+          mechanisms that leverage channel redundancy to achieve
+          denial-of-service resistance.},
+        mainoutcomes={The project
+          led to the development of advanced security features within
+          GE's aircraft network systems including the design of secure
+          antennas to resist DoS attacks, eavesdropping attacks, and malicious
+          corruption of data on the network.}]
+
+          \grant[% Three security projects: TCS-002 Cyber Best Practice, TCS-005 Security across organisational boundaries, TCS-006 Cyber security incident response, June 2017, 18 months PI
+      title ={Power Systems Security (Competitive)},
+      principalinvestigator = {J Irvine},
+      otherinvestigators = {R Atkinson},
+      dates = {06/2017--01/2019},
+      fundingagency = {Innovate UK},
+      value = {\textsterling 200,000},      
+      summary = {This project will survey the UK utility sector to
+        identify from a landscape of potential incidents to identify
+        the capacity needed to respond and recover to cyber security
+        events. This will include considering the necessary functions
+        that need to be maintained during an attack and assessing the
+        levels of incident handling that can be carried out by
+        DNOs. An incident response framework will be developed that
+        enables identification of the capabilities and redundancy
+        back-up that are required to withstand an attack and manage
+        recovery. This project considers mechanisms to encourage the
+        achievement of cyber security across organisational boundaries
+        and throughout supply chains in electricity distribution. Due
+        to the growing attack surface and increase in volume of
+        attacks, a more efficient deployment and ongoing assurance of
+        security controls will be investigated. The project also
+        considers the security of vendor equipment and vendor
+        interactions with operational systems through the design of
+        secure and verifiable software environments which can be
+        audited.  },
+      mainoutcomes={The main outcomes with be the
+        implementation of a secure PC environment that can be used in
+        an OT environment. Through PNDC (see
+        2-description-of-applicant.pdf) member links to ENA, this will
+        be disseminated in the UK utility sector more generally, and
+        through Strathclyde's membership of EE-ISAC, utilities in
+        Europe.}]
+
+
+          \grant[%
+      title ={Privacy-preserving computation on the Cloud (Competitive)},
+      principalinvestigator = {Sotirios Terzis},
+      otherinvestigators = {Cheng Dong},
+      dates = {04/13--03/17},
+      fundingagency = {EPSRC DTG},
+      value = {\textsterling 11,948},
+      summary = {This project focused on scalable private
+        set-intersection. A problem of longstanding interest within
+        the security community; given a number of encrypted sets, how
+        can a cloud operator (or a set of distributed participants)
+        reliably compute the intersection of these sets without
+        learning any information about non-intersecting elements of
+        the sets.},
+      mainoutcomes = {This project developed three
+        security protocols for private set-intersection. The first
+        protocol ensures confidentiality under a honest-but-curious
+        adversary using homomorphic cryptosystems. The second protocol
+        is a significant improvement in terms of security, as it
+        assumes an active adversary, whilst also doing away with
+        homomorphic cryptosystems resulting in a more efficient
+        solution. The third protocol, adds verifiability and formal
+        proofs of security. The project outputs were published in
+        respectable peer-reviewed journals and conferences.}]
+          
+        
+        
+\end{document}

@@ -1,0 +1,427 @@
+\documentclass[11pt]{article}
+\usepackage{common}
+\usepackage{bibunits}
+
+
+\begin{document}
+    \maketitle
+    \setcounter{section}{4}
+    \section{Selected peer-reviewed publications in cybersecurity}
+
+    \makeatletter
+    
+    \newcommand\citeone[2][]{{%
+        
+        % Fiddle with bibitem to remove the citation number.
+        % With only one item in the bibliography, but repeated bibliographies,
+        % items would be numbered 1, 1, 1, 1, etc.
+        %\let\oldbibitem\bibitem%
+        %\renewcommand\bibitem[1]{\let\olditem\item\renewcommand\item[1][]{\olditem[]}%
+        %    \oldbibitem[]{##1}\hspace{-1em}\setlength\parindent{-1em}\let\item\olditem}%
+        %\renewcommand\refname{\vspace{-2em}}%
+        %%\edef\tmpbibname{\ifthenelse{1>0}{megabib.sorted}{#1}}%
+        %%\begin{bibunit}[plainunsrt]\nocite{#2}\putbib[\ifx#1\@null megabib.sorted\else #1\fi]%
+        %%\begin{bibunit}[plainunsrt]\nocite{#2}\expandafter\putbib\expandafter[\ifthenelse{\equal{#1}{}}{megabib.sorted}{#1}]%
+        \renewenvironment{thebibliography}[1]{\renewcommand\bibitem[2][]{\if@filesw \immediate\write\@auxout{\string\bibcite{####2}{}}\fi\ignorespaces{#1}}}{}
+        \begin{bibunit}[abbrv]\nocite{#2}\putbib[megabib]%
+        \end{bibunit}%\vspace{-2ex}%
+        %\let\bibitem\oldbibitem}}
+    }}
+    \newcommand\forperson[1]{%
+      \subsection{#1}%
+    }%  \rule{0.2\textwidth}{0.1mm}\\\vspace{-1.5mm}}
+
+    \define@key{publication}{cite}{\def\mycite{#1}}%
+    \define@key{publication}{description}{\def\mydescription{#1}}%
+    \define@key{publication}{citations}{\def\mycitations{#1}}%
+    \define@key{publication}{areas}{\def\myareas{#1}}%
+    \define@key{publication}{pdfurl}{\def\mypdfurl{#1}}%
+    \newcommand\publication[1][]{%
+      \setkeys{publication}{#1}
+      \citeone[\bf Publication:]\mycite
+      %\expandafter\citeone\expandafter[\mybibsource]{\mycite}
+  
+      {\bf Description:} \mydescription
+  
+      \noindent
+      \ifthenelse{\equal\mycitations{}}{}{{\bf Citations:} \mycitations\\}%
+             {\bf Areas:} \myareas\\
+             {\bf URL:} \expandafter\url\expandafter{\mypdfurl}
+             \\\rule{0.2\textwidth}{0.1mm}\\\vspace{-4.0mm}
+    }
+
+    \makeatother
+
+
+
+    %\forperson{Shishir Nagaraja}
+
+    % significance
+    % known impacts
+    % relationship to technical areas
+
+
+    %%%%%
+
+
+    \newpage
+    
+    \forperson{Shishir Nagaraja}
+
+    \publication[%
+        cite={nagaraja:esorics:2014},
+        description={ This paper unifies behavioural analysis and graph analysis approaches to detect malware C\&C traffic. Behavioural analysis deals with the statistics of traffic i.e how endpoints communicate. Graph analysis considers who talks to whom without considering how. This work proposes a new technique that integrates and extends both these approaches. Botyacc defines a diffusion process applied on SIEM data to construct a feedback loop into conventional behavioural analysis. A second feedback loop from the output of behavioural analysis is input to the diffusion process. This work is significant because it unifies two previously different lines of inquiry.},
+        areas={Traffic analysis, behavioural analysis, botnet detection, graph theory},
+        citations=12,
+        pdfurl={http://personal.strath.ac.uk/shishir.nagaraja/papers/botyacc.pdf}]
+    
+
+    \publication[%
+        cite={gardiner:acmsur:2016},
+        description={This paper studies the evasion resilience of
+          malware detection algorithms. A significant line of inquiry
+          has been on detecting the command and control(C\&C) channel
+          which a compromised system establishes to communicate with
+          its controller.  A major oversight with many of these
+          detection techniques is the design’s resilience to evasion
+          attempts by the well-motivated attacker. C\&C detection
+          techniques make widespread use of a machine learning (ML)
+          component. Therefore, to analyse the evasion resilience of
+          these detection techniques we systematize works in the field
+          of C\&C detection, and then, using existing models from the
+          literature, go on to systematize attacks against the machine
+          learning components used in these approaches},
+        areas={Command and control channels, botnets, data mining, machine learning, network intrusion},
+        citations=15,
+        pdfurl={http://personal.strath.ac.uk/shishir.nagaraja/papers/secml-survey.pdf}]
+
+    \publication[%
+        cite={biswas:acmsur:2017},
+        description={ This paper presents a novel analysis of
+          covert timing channels and countermeasures. It's
+          significance lies in the systematization of the theoretical
+          foundations, the implementation, and the various detection
+          and prevention techniques in the area. Rigour: the paper
+          analyzes 64 different timing-channel communication
+          mechanisms.},
+        areas={Network Timing Channels, Subliminal Channels, Inter-router communication, Network Steganography},
+        citations=9,
+        pdfurl={http://personal.strath.ac.uk/shishir.nagaraja/papers/timing-survey.pdf}]
+
+    
+    \publication[%
+        cite={venkatesh:jcv:2017},
+        description={Detecting malware C\&C traffic is a
+          needle-in-a-haystack search problem across distributed
+          vantage points. This paper focuses on efficient algorithms
+          for C\&C detection. We have subsequently productised the
+          technique to for online C\&C detection in core routers at
+          traffic speeds of up to 80Gbps. Experimental results on real
+          Internet traffic traces from an ISP’s backbone network
+          indicate that our techniques, (i) have time complexity
+          linear in the volume of traffic, (ii) are robust to
+          measurement inaccuracies arising from partial visibility and
+          dynamics of background traffic.},
+        areas={malware, botnets, network security},
+        citations=6,
+        pdfurl={http://personal.strath.ac.uk/shishir.nagaraja/papers/botspot.pdf}]
+
+
+    \forperson{Robert Atkinson}
+
+
+    \publication[%
+        cite={hodo:isncc:2016},
+        description={This paper presents a threat analysis of the IoT and uses an Artificial Neural Network (ANN) to combat these threats. A multi-level perceptron, a type of supervised ANN, is trained using internet packet traces, then is assessed on its ability to thwart Distributed Denial of Service (DDoS/DoS) attacks. This paper focuses on the classification of normal and threat patterns on an IoT Network. The ANN procedure is validated against a simulated IoT network. The experimental results demonstrate 99.4\% accuracy and can successfully detect various DDoS/DoS attacks.},
+        areas={IoT security, network security, DoS attack, intrusion detection},
+        citations=21,
+        pdfurl={http://personal.strath.ac.uk/robert.c.atkinson/papers/isncc2016.pdf}]
+
+    \publication[%
+        cite={bellekens:icsi:2014},
+        description={Pattern Matching is a computationally intensive task used in many research fields and real world applications. This paper explores the parallel capabilities of modern General Purpose Graphics Processing Units (GPGPU) applications for high speed pattern matching. A highly compressed failure-less Aho-Corasick algorithm is presented for Intrusion Detection Systems on off-the-shelf hardware. The work also explores the performance impact of adequate prefix matching for alphabet sizes and varying pattern numbers achieving speeds up to 8Gbps and low memory consumption for intrusion detection},
+        areas={network security, intrusion detection},
+        citations=13,
+        pdfurl={https://arxiv.org/pdf/1704.02272}]
+
+    \publication[%
+        cite={hodo:ares:2017},
+        description={This work focuses on the classification of Tor traffic and nonTor traffic to expose the activities within Tor traffic that minimizes the protection of users. A study to compare the reliability and efficiency of Artificial Neural Network and Support vector machine in detecting nonTor traffic in UNB-CIC Tor Network Traffic dataset is presented in this paper. The results are analysed based on the overall accuracy, detection rate and false positive rate of the two algorithms. Experimental results show that both algorithms could detect nonTor traffic in the dataset. },
+        areas={Intrusion detection, Traffic Analysis, Anonymous Communication},
+        citations=2,
+        pdfurl={https://arxiv.org/pdf/1708.08725}]
+
+    \publication[%
+        cite={bellekens:sin:2016},
+        description={Advances in the massively parallel computational abilities of  (GPUs) has given rise to the potential for GPU malware. Due to the complexity of the Nvidia CUDA (Compute Unified Device Architecture) framework, conventional reverse engineering techniques are unusable. This paper shows that the Nvidia compiler, using default settings, leaks information. We leverge this to develop analysis techniques for  forensic investigation including carrying out black-box disassembly and reverse engineering of CUDA binaries.},
+        areas={Reverse Engineering},
+        citations=4,
+        pdfurl={http://xavierbellekens.com/publications/SIN16.pdf}]
+
+
+
+    
+    \forperson{James Irvine}
+    
+    \publication[%
+        cite={paul:sin:2014},
+        description={This paper investigates the privacy policies of four services for wearable personal health monitoring devices, and the extent to which these services protect user privacy. We find these services do not fall within the scope of existing legislation regarding the privacy of health data. We then present a set of criteria which would preserve user privacy, and redress the concerns identified within the policies of the services investigated.},
+        areas={Privacy, IoT security},
+        citations=25,
+        pdfurl={https://strathprints.strath.ac.uk/49510}]
+
+    \publication[%
+        cite={paul:jcsm:2016},
+        description={In many regions, banking and other important services can be accessed from mobile connected devices, expanding the reach of these services. This paper highlights the practical risks of one such lowcost computing device, highlighting the ease with which Android-based internet tablets, designed for the developing world, can be completely compromised by an attacker. The weaknesses identified allow an attacker to gain full root access and persistent malicious code execution capabilities. We consider the implications of these attacks, and the ease with which these attacks may be carried out, and highlight the difficulty in effectively mitigating these weaknesses as a user, even on a recently manufactured device.},
+        areas={Mobile security, privacy},
+        citations=4,
+        pdfurl={https://strathprints.strath.ac.uk/54877/}]
+
+    \publication[%
+      cite={paul:nbict:2016},
+        description={GDPR has increased focus on the privacy policies
+          of companies.  While the intent of legislation such as this
+          is to put the user in control of their data, privacy
+          policies are still difficult for users to
+          understand. Approaches such as P3P allow the user to specify
+          what they are willing to accept, which can then be checked
+          against the given policy in an automated fashion. However,
+          P3P is inflexible, and does not deal with a number of issues
+          such are modification of policies or user
+          anonymisation. This paper reviews policies amongst a number
+          of major providers, and identifies a number of
+          recommendations to improve current state-of-the-art.},
+        areas={privacy, security policy},
+        citations=4,
+        pdfurl={https://strathprints.strath.ac.uk/56209/}]
+
+        
+    \publication[%
+        cite={bellekens:isinm:2015},
+        description={This paper investigates the practicality of memory attacks on commercial GPUs. We show that unscrupulous software running  on the same GPU, either by another user may be able to gain access to the contents of the GPU memory. This contains data from previous program executions  containing privileged data, which would ordinarily be inaccessible to an unprivileged application. Further, a novel methodology for digital forensic examination of GPU memory for remanent data is proposed along with considerations towards anti-forensic countermeasures.},
+        areas={digital forensics, GPU security},
+        citations=2,
+        pdfurl={https://strathprints.strath.ac.uk/53209}]
+
+    
+
+
+\forperson{Sotirios Terzis}
+
+    \publication[%
+      cite={abadi:tdsc:2017},
+        description={ The work makes a significant contribution to the
+          problem of efficient secure processing of data outsourced to
+          the cloud by proposing the first PSI protocol for verifiable
+          data storage and computation in the context of a malicious
+          cloud, which provides the security properties necessary for
+          cloud outsourcing with strong security guarantees and linear
+          verification complexity using much more efficient additive
+          rather than fully homomorphic encryption. The protocol
+          security is rigorously analysed by providing a formal proof
+          of its security properties in the standard model.  },
+        areas={Cloud security;Private Set Intersection;Secure Computation},
+        citations=1,
+        pdfurl={https://strathprints.strath.ac.uk/60721/}]
+
+    
+    \publication[%
+        cite={abadi:fc:2016},
+        description={The work makes a significant contribution to the
+          problem of secure processing of data outsourced to the cloud
+          by proposing two protocols. The work provides a rigorous
+          study of the protocols that combines formal proofs of
+          security properties and implementation-based performance
+          analysis. The significance of the contribution is, first,
+          the protocols preserve data privacy from the cloud provider,
+          offering stronger security properties than earlier work;
+          second, they are efficient, do not use homomorphic
+          encryption, while the more efficient protocol is also shown
+          to scale well and be more efficient to earlier similar
+          state-of-the-art protocols for large dataset sizes. },
+        areas={cloud security, security protocols},
+        citations=9,
+        pdfurl={https://fc16.ifca.ai/preproceedings/09_Abadi.pdf}]
+
+    \publication[%
+        cite={abadi:SEC:2015},
+        description={The work describes the first protocol for Private Set Intersection that ensures data confidential under the semi-honest model for outsourced data sets. The work is rigorous including a sketch for a security proof.},
+        areas={secure distributed computation, cloud security, distributed systems security},
+        citations=17,
+        pdfurl={https://strathprints.strath.ac.uk/52407/}]
+
+    
+    \publication[%
+      cite={nosseir:soups:2013},
+        description={This paper studies how users perceive security of
+          five authentication schemes: password, PKQ, WA, Go-Pass and
+          GrIDSure. We found that user-perception of security has
+          little to do with the actual strength of an authentication
+          scheme. While brute-force resistance was a major
+          contributing factor in ther security perception of
+          something-you-know schemes, the awareness of the potential
+          threats and effort involved also play a role.},
+        areas={authentication, network security},
+        citations=7,
+        pdfurl={https://strathprints.strath.ac.uk/50752/}]
+
+    
+
+    \forperson{Lilian Edwards}
+    \publication[%
+        cite={lilian:edplr:2016},
+        description={The paper argues that a right to an explanation in the EU General Data Protection Regulation (GDPR) is unlikely to present a complete remedy to algorithmic harms, particularly in respect of privacy leakages due to ML algorithms. Additional concerns range from unfairness, discrimination, and opacity.  We discuss approaches to redress the situation via (i) to the right to erasure (``right to be forgotten'') and the right to data portability; and (ii) to privacy by design, Data Protection Impact Assessments and certification and privacy seals, may have the seeds we can use to make algorithms more responsible, explicable, and human-centered.},
+        areas = {privacy law, machine learning, algorithms, data protection, privacy},
+        citations=17,
+        pdfurl={https://ssrn.com/abstract=2972855}]
+
+
+   \publication[%
+        cite={lilian:dktr:2017},
+        description={A key issue in Smart Cities is the lack of opportunity in an ambient or smart city environment for the giving of meaningful consent to processing of personal data; other crucial issues include the degree to which smart cities collect private data from inevitable public interactions.  This paper, drawing on author engagement with smart city development in Glasgow as well as the results of an international conference in the area curated by the author, argues that smart cities combine the three greatest current threats to personal privacy, with which regulation has so far failed to deal effectively; the Internet of Things(IoT); and the Cloud. It seeks solutions both from legal institutions such as data protection law and from technological approaches, proposing in particular from the ethos of Privacy by Design, a new ``social impact assessment'' and new human:computer interactions to promote user autonomy in ambient environments.},
+        areas = {privacy, smart cities, data protection, internet of things, privacy by design},
+        citations=32,
+        pdfurl={https://strathprints.strath.ac.uk/55917/}]
+
+
+   \publication[%
+        cite={lilian:edplr:2016},
+        description={In this paper we give an introduction to the transition in contemporary surveillance from top down traditional police surveillance to profiling and “pre-crime” methods. We then review in more detail the rise of open source (OSINT) and social media (SOCMINT) intelligence and its use by law enforcement and security authorities. Following this we consider what if any privacy protection is currently given in UK law to SOCMINT. Two factors are in particular argued to be supportive of a reasonable expectation of privacy in open public social media communications: first, the failure of many social network users to perceive the environment where they communicate as “public”; and secondly, the impact of search engines (and other automated analytics) on traditional conceptions of structured dossiers as most problematic for state surveillance. We conclude that existing laws  provide adequate protection for open SOCMINT and that this will be increasingly significant as more and more personal data is disclosed and collected in public without well-defined expectations of privacy},
+        areas= {privacy in law, social media, open source intelligence, big data, predictive policing},
+        citations=1,
+        pdfurl={ https://ssrn.com/abstract=2702426}]
+
+
+   \publication[%
+        cite={lilian:caelj:2013},
+        description={Post-mortem privacy is the right of a person to preserve and control what becomes of his or her reputation, dignity, integrity, secrets or memory after their death. While of established concern in disciplines such as psychology, counselling and anthropology, this notion has till now has received relatively little attention in cybersecurity and law. An analysis of comparative common and civilian law institutions, focusing on personality rights, defamation, moral rights and freedom of testation, confirms that there is little support for post-mortem privacy in common law, and while personality rights in general have greater traction in civilian law, including their survival after death, the primary role taken by contract regulation may still mean that users of US-based cloud platforms, are deprived of post mortem privacy rights. We suggest future protection may need to come from legislation, contract or privacy-enhancing-technologies, of which the first emergent into the market is Google Inactive Account Manager.},
+        areas = {personality rights, privacy law, rights of the deceased},
+        citations=19,
+        pdfurl={https://ssrn.com/abstract=2267388}]
+
+    \forperson{George Weir}
+
+    \publication[%
+        cite={albladi:hccis:2018},
+        description={Often, attackers access victims' information on online social networks before launching targeted attacks. This paper proposes techniques for proactive identification of gullible individuals who are likely to be vulnerable to social engineering and spear-phishing attacks. We propose a {\em unified} user-centric framework to measure gullibility based on the following class of attributes:  socio-psychological, habitual, socio-emotional, and perceptual. We are closely working with the Scottish Police to carry out a wider study to validate our findings.},
+        areas= {Deception, Information security, Phishing, Social engineering, Social network},
+        citations=0,
+        pdfurl={https://strathprints.strath.ac.uk/63669}]
+
+    \publication[%
+        cite={alkhurayyif:est:2017},
+        description={This  security usability paper examines
+          the comprehensibility of information security policies from
+          eight different ISPs. As widely suspected, this
+          user study found that information security policies are
+          largely found to be opaque and incomprehensible, both using
+          automated approaches and by humans. We developed a framework
+          for security-policy readability using nine metrics from
+          natural language literature. Our results reveal that
+          traditional readability metrics are ineffective in
+          predicting the human estimation.  We proposed a new
+          readability metric which accurately predicts human
+          estimation thus providing a new quantitative measure that
+          organisations can rely upon. We are closely working with
+          eight different organisations to adopt our new readability
+          metric into their organisational policy evolution
+          workflow.},
+        areas={Information security policy},
+        citations=0,
+        pdfurl={https://strathprints.strath.ac.uk/63070/}]
+
+    \publication[%
+        cite={etaher:trustcom:2015},
+        description={This paper details a survey of Android users in an attempt to shed light on how users perceive the risks associated with app permissions and in-built adware. A series of questions was presented in a Web survey, with results suggesting interesting differences between males and females in installation behaviour and attitudes toward security.},
+        areas={malware,},
+        citations=8,
+        pdfurl={https://strathprints.strath.ac.uk/54485/}]
+
+    \publication[%
+      cite={robinson:icgsss:2015},
+        description={This paper details a survey of Android users in
+          an attempt to shed light on how users perceive the risks
+          associated with app pe rmissions and in-built ad- ware.  A
+          series of questions was presented in a Web su rvey, with
+          results suggest- ing interesting differences between males
+          and females in installation behaviour and attitudes toward
+          security },
+        areas={Mobile security, security usability},
+        citations=7,
+        pdfurl={https://strathprints.strath.ac.uk/54575/}]
+
+
+
+
+
+   
+
+\if 0   
+   \forperson{Robert Atkey}
+
+   \publication[%
+     cite        = {atkey:eceasst:2015},
+     description = {This paper describes a static analysis tool, ThreadSafe, that focuses on detecting concurrency defects within Java programs. ThreadSafe is particularly appropriate for detecting inconsistent synchronisation errors that opens software to harmful attacks leveraging violations of the internal invariants. ThreadSafe outperforms prior art by offering a lower false-positive rate of detection whilst detecting more concurrency defects. This work has been used by eleven banks and investment trading companies to detect and remove security-concurrency defects within their banking systems.},
+     areas       = {secure coding, static analysis},
+     citations   = 5,
+     pdfurl      = {https://bentnib.org/threadsafe.pdf}]
+     
+   \publication[%
+     cite        = {atkey:popl:2013},
+     description = {This paper programming languages whose types are indexed by algebraic structures such as groups of geometric transformations. Other examples include types indexed by principals--for information flow security--and types indexed by distances--for analysis of analytic uniform continuity properties. Following Reynolds, we prove a general Abstraction Theorem that covers all these instances. Reynolds' relational parametricity provides a powerful way to reason about programs in terms of invariance under changes of data representation. Consequences of our Abstraction Theorem include free theorems expressing invariance properties of programs and type isomorphisms based on invariance properties.},
+     areas       = {information flow security},
+     citations   = 9,
+     pdfurl      = {https://bentnib.org/algebraic-indexed.pdf}
+   ]
+
+   \publication[%
+     cite        = {atkey:lics:2018},
+     description = {Tracking resource usage is a critical component of detecting denial-of-service attacks based on inducing resource exhaustion. This paper leverages type theory to develop techniques for tracking ways in which each program variable is used. Type Theory offers a tantalising promise: that we can program and reason within a single unified system. However, this promise slips away when we try to produce efficient programs. Type Theory offers little control over usage information: how are computational resources used, and when can they be reused. In this paper, we fully exploit the usage information. We interpret terms simultaneously as having extensional (compile-time) content and intensional (runtime) content. ead constructively, our models provide a resource sensitive compilation method for Quantitative Type Theory.},
+     areas       = {DDoS detection, formal reasoning},
+     citations   = 0,
+     pdfurl      = {https://bentnib.org/quantitative-type-theory.pdf}
+   ]
+
+   \forperson{Narisong Huhe}
+
+   
+
+   \publication[%
+     cite        = {tan:ipsr:2014},
+     description = {This study seeks to identify and test a mechanism through which the Internet influences public support in an authoritarian environment in which alternative information is strictly censored by the state. Through online discussions, web users often interpret sanctioned news information in directions different from or even opposite to the intention of the authoritarian state. This alternative framing on the Internet can strongly affect the political views of web users. Through an experimental study conducted in China, we find that subjects exposed to alternative online framing generally hold lower levels of policy support and evaluate government performance more negatively. This finding implies that even though the access to information on sensitive topics is effectively controlled by the government, the diffusion capabilities of the Internet can still undermine the support basis of the seemingly stable authoritarian regime.},
+     areas       = {censorship, internet policy, internet security},
+     citations   = 28,
+     pdfurl      = {http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.855.5209\&rep=rep1\&type=pdf}
+   ]
+
+
+   \publication[%
+     cite        = {tang:go:2017},
+     description = {Although the Internet is severely censored in China, the negative reporting and critical deliberations of political institutions and policy issues, especially those low-profile ones, have been abundant in the cyberspace. Given such a mixed pattern of online information, this study aims to investigate the complex effect of the Internet on regime support in China by parsing it into direct effect and indirect effect. It argues that the Internet erodes its viewers' overall support for the authoritarian regime indirectly by decreasing their evaluation of government performance. The findings from a mediation analysis of a Beijing sample support this argument. The result of one analysis also indicates that the direct effect of the Internet use on regime support can be positive. Such findings about the complex effect of the Internet help advance our understanding of both political and theoretical implications of the diffusion of the Internet in authoritarian countries.},
+     areas       = {censorship, internet policy},
+     citations   = 0,
+     pdfurl      = {https://strathprints.strath.ac.uk/61534/}
+   ]
+
+   \publication[%
+     cite        = {huhe:prq:2018},
+     description = {This study explores the perplexing role of the Internet in authoritarian settings. We disentangle the political impact of the Internet along two distinct dimensions, indirect effects and direct effects. While the direct effects of the exposure to the Internet shape political attitudes in a manifest and immediate way, the indirect effects shape various political outcomes via instilling fundamental democratic orientations among citizens. In authoritarian societies such as China, we argue the indirect effects of the Internet as a value changer tend to be potent, transformative and persistent. But the direct effects of the Internet as a mere alternative messenger are likely to be markedly contingent. Relying on the newly developed method of causal mediation analysis and applying the method to data from a recent survey conducted in Beijing, we find strong empirical evidence to support our argument on the two-dimensional impacts of the Internet on authoritarian nations.},
+     areas       = {censorship resistance, internet security},
+     citations   = 0,
+     pdfurl      = {https://strathprints.strath.ac.uk/63295/}
+   ]
+\fi
+
+   
+\if 0
+   \publication{%
+     cite        = {},
+     description = {},
+     areas       = {},
+     citations   = {},
+     pdfurl      = {}
+   }
+\fi
+
+   
+\end{document}
