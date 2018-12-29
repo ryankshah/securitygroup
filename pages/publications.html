@@ -1,0 +1,43 @@
+<!-- do some js magic to pull publications from scholar -->
+
+<div class="columns pubs" id="publications">
+
+</div>
+
+<script type="text/javascript" src="js/getpubs.js"></script>
+<script type="text/javascript">
+    function callback(result) {
+        // paperId, title, url, year
+        var paperList = result.papers;
+        paperList.sort(function(a, b) {
+            return b.year - a.year;
+        });
+
+        $('#publications').append(JSON.stringify(paperList, null, 2) + '<br /><br />');
+    }
+
+    $(function() {
+        // List of SemanticScholar author ID numbers
+        // Nagaraja, Terzis, Irvine, Weir, Atkinson, Atkey
+        var ids = {
+            "nagaraja": 2533041,
+            "terzis": 2166856,
+            "irvine": 4956130,
+            "weir": 2727307,
+            "atkinson": 34911160,
+            "atkey": 2953686
+        };
+
+        //$('.loader-wrapper').show();
+
+        // Iterate over id numbers
+        $.each(ids, function(k, v) {
+            // Parse publication list into HTML
+            // using callback function
+            var lol = getPublications(v, callback);
+            console.log(lol);
+        });
+
+        //$('.loader-wrapper').hide();
+    });
+</script>
