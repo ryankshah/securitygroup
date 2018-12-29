@@ -1,19 +1,36 @@
 <!-- do some js magic to pull publications from scholar -->
 
-<div class="columns pubs" id="publications">
-
-</div>
+<div class="columns pubs" id="publications"></div>
 
 <script type="text/javascript" src="js/getpubs.js"></script>
 <script type="text/javascript">
     function callback(result) {
+        // Create the container with the author name
+        var container = '<div class="column col-12" id="' + result.authorId + '"><h1>' + result.name + '</h1><br />';
+
         // paperId, title, url, year
-        var paperList = result.papers;
-        paperList.sort(function(a, b) {
+        var papers = result.papers;
+
+        // Sort papers
+        papers.sort(function(a, b) {
             return b.year - a.year;
         });
 
-        $('#publications').append(JSON.stringify(paperList, null, 2) + '<br /><br />');
+        container += '<div class="columns">';
+
+        // For each paper, create a card
+        $.each(papers, function(i, paper) {
+            container += '<div class="column col-4 col-sm-6">';
+            container += '<div class="card"><div class="card-header">';
+            container += '<div class="card-title h6">' + paper.title + '</div>';
+            container += '<div class="card-subtitle">' + paper.year + '</div>';
+            container += '</div><div class="card-footer">';
+            container += '<a class="btn btn-primary" href="' + paper.url + '">View More</a></div></div>';
+            container += '</div>';
+        });
+
+        container += '</div></div>';
+        $('#publications').append(container + '<br /><br />');
     }
 
     $(function() {
@@ -28,16 +45,11 @@
             "atkey": 2953686
         };
 
-        //$('.loader-wrapper').show();
-
         // Iterate over id numbers
         $.each(ids, function(k, v) {
             // Parse publication list into HTML
             // using callback function
-            var lol = getPublications(v, callback);
-            console.log(lol);
+            getPublications(v, callback);
         });
-
-        //$('.loader-wrapper').hide();
     });
 </script>
