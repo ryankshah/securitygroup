@@ -6,7 +6,7 @@
 <script type="text/javascript">
     function callback(result) {
         // Create the container with the author name
-        var container = '<div class="column col-12" id="' + result.authorId + '"><h1>' + result.name + '</h1><br />';
+        var container = '<div class="column col-12" id="' + result.authorId + '"><h1>' + result.name + '</h1>';
 
         // paperId, title, url, year
         var papers = result.papers;
@@ -16,20 +16,13 @@
             return b.year - a.year;
         });
 
-        container += '<div class="columns">';
-
+        container += '<ul class="paper-list">';
         // For each paper, create a card
         $.each(papers, function(i, paper) {
-            container += '<div class="column col-4 col-sm-6">';
-            container += '<div class="card"><div class="card-header">';
-            container += '<div class="card-title h6">' + paper.title + '</div>';
-            container += '<div class="card-subtitle">' + paper.year + '</div>';
-            container += '</div><div class="card-footer">';
-            container += '<a class="btn btn-primary" href="' + paper.url + '">View More</a></div></div>';
-            container += '</div>';
+            container += '<li><a href="' + paper.url + '">' + paper.title + ', <strong>' + paper.year + '</strong></a></li>';
         });
 
-        container += '</div></div>';
+        container += '</ul></div>';
         $('#publications').append(container + '<br /><br />');
     }
 
