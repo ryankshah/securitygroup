@@ -1,12 +1,14 @@
 <!-- do some js magic to pull publications from scholar -->
 
-<div class="columns pubs" id="publications"></div>
+<div class="columns pubs" id="publications">
+    <h1>Security Group Publications</h1><br />
+</div>
 
 <script type="text/javascript" src="js/getpubs.js"></script>
 <script type="text/javascript">
     function callback(result) {
         // Create the container with the author name
-        var container = '<div class="column col-12" id="' + result.authorId + '"><h1>' + result.name + '</h1>';
+        var container = '<div class="column col-12" id="' + result.authorId + '"><h3 class="border-bottom">' + result.name + '</h3>';
 
         // paperId, title, url, year
         var papers = result.papers;
